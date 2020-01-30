@@ -1,0 +1,137 @@
+<div class="divTable">
+  <div class="div_20">
+    <mat-card>
+      <div class="example-container">
+        <form
+          [formGroup]="bigForm"
+          class="form">
+          <mat-card-content>
+            <mat-form-field>
+              <input
+                matInput
+                [matDatepicker]="simpleDate"
+                value="{{ now | date: 'yyyy-MM-dd' }}"
+                formControlName="date" placeholder="Date"/>
+              <mat-datepicker-toggle matSuffix [for]="simpleDate">
+              </mat-datepicker-toggle>
+              <mat-datepicker #simpleDate></mat-datepicker>
+            </mat-form-field>
+          </mat-card-content>
+          <mat-card-content>
+            <mat-form-field>
+              <input
+                type="text"
+                placeholder="Type"
+                matInput
+                [matAutocomplete]="auto"
+                formControlName="type" />
+              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option *ngFor="let type of types" [value]="type">
+                  {{ type }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </mat-card-content>
+          <mat-card-content>
+            <mat-form-field>
+              <input
+                type="text"
+                placeholder="Store" formControlName="store"
+                matInput />
+            </mat-form-field>
+          </mat-card-content>
+          <mat-card-content>
+            <mat-form-field>
+              <span matPrefix>$ &nbsp;</span>
+              <input
+                type="number"
+                placeholder="Amount" formControlName="amount"
+                matInput/>
+            </mat-form-field>
+          </mat-card-content>
+          <mat-card-content>
+            <mat-form-field>
+              <span matSuffix>&nbsp;Km</span>
+              <input
+                type="number"
+                placeholder="Odometer" formControlName="ODM"
+                matInput/>
+            </mat-form-field>
+          </mat-card-content>
+          <mat-card-content>
+            <mat-form-field>
+              <span matSuffix>&nbsp;L</span>
+              <input
+                type="number"
+                placeholder="L" formControlName="totalliter"
+                matInput/>
+            </mat-form-field>
+          </mat-card-content>
+          <!-- <mat-card-content>
+            <mat-form-field>
+              <span matPrefix>$ &nbsp;</span>
+              <input
+                type="number"
+                placeholder="$/L"  formControlName="literperprice"
+                matInput/>
+            </mat-form-field>
+          </mat-card-content> -->
+          <mat-card-content >
+            <mat-form-field>
+              <textarea
+                placeholder="Description"  formControlName="description"
+                matInput></textarea>
+            </mat-form-field>
+          </mat-card-content >
+          <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="onSubmit(bigForm.value)">Save</button>
+            <button
+              type="button"
+              mat-raised-button
+              color="warn"
+              (click)="onCancel()">
+              Cancel
+            </button>
+            <button mat-raised-button (click)="onDelete(bigForm.value);" [disabled]="isDisabled">Delete</button>
+          </mat-card-actions>
+        </form>
+      </div>
+    </mat-card>
+  </div>
+  <a href="/summary">Summary</a>
+  <div class="div_80">
+    <table mat-table [dataSource]="dataSource" width="100%">
+      <ng-container matColumnDef="Date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Type">
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Store">
+        <th mat-header-cell *matHeaderCellDef> Store </th>
+        <td mat-cell *matCellDef="let element"> {{element.store}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Odometer">
+        <th mat-header-cell *matHeaderCellDef> Odometer </th>
+        <td mat-cell *matCellDef="let element"> {{element.ODM}} </td>
+      </ng-container>
+      <ng-container matColumnDef="L">
+        <th mat-header-cell *matHeaderCellDef> L ($/L)</th>
+        <td mat-cell *matCellDef="let element" aligh="right"> {{element.totalliter}}  <div *ngIf="element.literperprice != null">({{element.amount/element.totalliter | number:'1.3'}})</div>  </td>
+      </ng-container>
+      <ng-container matColumnDef="Amount">
+        <th mat-header-cell *matHeaderCellDef> Amount </th>
+        <td mat-cell *matCellDef="let element" aligh="right"> {{element.amount}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Description" class="description">
+        <th mat-header-cell *matHeaderCellDef  class="description"> Description </th>
+        <td mat-cell *matCellDef="let element" class="description"> {{element.description}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelect(row)"></tr>
+    </table>
+  </div>
+</div>
+

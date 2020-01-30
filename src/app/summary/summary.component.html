@@ -1,0 +1,21 @@
+<a href="/new">List</a>
+<table mat-table [dataSource]="dataSource" width="100%">
+  <ng-container matColumnDef="Type">
+    <th mat-header-cell *matHeaderCellDef> Type </th>
+    <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+  </ng-container>
+  <ng-container matColumnDef="TotalAmount">
+    <th mat-header-cell *matHeaderCellDef> Total Amount </th>
+    <td mat-cell *matCellDef="let element"> {{element.totalAmount| number:'1.2'}} </td>
+  </ng-container>
+  <ng-container matColumnDef="TotalLiter">
+    <th mat-header-cell *matHeaderCellDef> Total Liter ( L/100Km ) </th>
+    <td mat-cell *matCellDef="let element">  <div *ngIf="element._id == 'Fuel'">   {{element.totalLiter | number:'1.3'}} ({{ ( element.totalLiter/ element.maxODM)*100 | number:'1.3'}})</div></td>
+  </ng-container>
+  <ng-container matColumnDef="Count">
+    <th mat-header-cell *matHeaderCellDef> Count </th>
+    <td mat-cell *matCellDef="let element"> {{element.count}} </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
