@@ -1,1 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+
+body {
+    font-family: Roboto, Arial, sans-serif;
+}
+mat-form-field{
+  width:100%;
+}
+.example-tooltip {
+    font-size:90%;
+}
+
+.form {
+  width: 100%;
+}
+.description{
+  width:300px;
+}
+
+.example-full-width {
+  width: 100%;
+}
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.div_80{
+  float:left;
+  display:table-column;
+  width:80%;
+}
+
+.div_20{
+  float:left;
+  display:table-column;
+  width:20%;
+}
+.divTable{
+  display:table;
+  width: 100%;
+}
+
+.divRow{
+  display:table-row;
+  width:auto;
+}
+
+.invisible{
+  display: block;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}

@@ -19,3 +19,10 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+<rg-gauge-chart *ngIf="needleValue != null"
+    [canvasWidth]="canvasWidth"
+    [needleValue]="needleValue"
+    [centralLabel]="centralLabel"
+    [options]="options"
+    [name]="name"
+    [bottomLabel]="bottomLabel" async></rg-gauge-chart>

@@ -33,4 +33,7 @@ export class BigService {
   getSum() {
     return this.http.get(this.baseURL + 'summary');
   }
+  getSum2() {
+    return this.http.get(this.baseURL + 'summary');
+  }
 }
